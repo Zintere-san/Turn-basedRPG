@@ -15,10 +15,13 @@ ExtResource("3_y4pey"): 15
 })
 ID = "Bat"
 hp = 1
+mp = 1
 patk = 1
 matk = 1
 pdef = 1
 mdef = 1
+agility = 1
+max_act = 1
 neutral = 0.0
 fire = 0.0
 ice = 0.0

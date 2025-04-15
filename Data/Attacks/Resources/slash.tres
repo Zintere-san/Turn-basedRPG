@@ -5,8 +5,11 @@
 [resource]
 script = ExtResource("1_m7oix")
 ID = "Slash"
-target_type = "SINGLE"
+target_type = "target"
 target_spread = "SINGLE"
-damage_type = "PHYS"
+number_of_hits = 1
+damage_type = "p"
+element = "neutral"
 damage_multiplier = 1.0
+damage_penetration = 0.0
 metadata/_custom_type_script = "uid://dfy2sa8b7ngvy"
