@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhfplumfoom0v"]
+
+[ext_resource type="Script" uid="uid://bx6b0rd5wb26a" path="res://Entities/Enemies/Resources/Monster.gd" id="1_mrqeg"]
+[ext_resource type="Resource" uid="uid://bytjcsx41j7hm" path="res://Entities/Enemies/Bat/bat.tres" id="2_ga5te"]
+[ext_resource type="Texture2D" uid="uid://dvyj4ui7mf4p7" path="res://batsprite.png" id="2_mrqeg"]
+
+[node name="monster" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mrqeg")
+enemy = ExtResource("2_ga5te")
+
+[node name="Batsprite" type="Sprite2D" parent="."]
+scale = Vector2(-2.867, 2.867)
+texture = ExtResource("2_mrqeg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -13.0
+offset_top = 29.0
+offset_right = 27.0
+offset_bottom = 82.0
+theme_override_font_sizes/font_size = 38

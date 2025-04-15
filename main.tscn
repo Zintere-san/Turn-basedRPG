@@ -1,0 +1,195 @@
+[gd_scene load_steps=10 format=3 uid="uid://citwu45n5rnpk"]
+
+[ext_resource type="PackedScene" uid="uid://drlrv6lbxea7t" path="res://player.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://unupul230njk" path="res://Data/Scripts/combat_manager.gd" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dhfplumfoom0v" path="res://monster.tscn" id="2_h2yge"]
+[ext_resource type="Resource" uid="uid://djj3gkxyeg7y6" path="res://Entities/Player/hero1.tres" id="3_7mycd"]
+[ext_resource type="Texture2D" uid="uid://cpjm3itrrkjwa" path="res://bg.png" id="4_1bvp3"]
+[ext_resource type="Resource" uid="uid://bytjcsx41j7hm" path="res://Entities/Enemies/Bat/bat.tres" id="4_lquwl"]
+
+[sub_resource type="Animation" id="Animation_lquwl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1bvp3"]
+resource_name = "enemy_weak_screen_shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.53, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.118682, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7mycd"]
+_data = {
+&"RESET": SubResource("Animation_lquwl"),
+&"enemy_weak_screen_shake": SubResource("Animation_1bvp3")
+}
+
+[node name="Battle" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1bvp3")
+
+[node name="turn_updater" type="Timer" parent="."]
+autostart = true
+
+[node name="Spots" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="1" type="Node2D" parent="Spots"]
+position = Vector2(246, 93)
+
+[node name="2" type="Node2D" parent="Spots"]
+position = Vector2(431, 73)
+
+[node name="3" type="Node2D" parent="Spots"]
+position = Vector2(610, 68)
+
+[node name="4" type="Node2D" parent="Spots"]
+position = Vector2(789, 69)
+
+[node name="5" type="Node2D" parent="Spots"]
+position = Vector2(967, 82)
+
+[node name="Combatants" type="Node" parent="."]
+
+[node name="Players" type="Node" parent="Combatants"]
+unique_name_in_owner = true
+
+[node name="player1" parent="Combatants/Players" instance=ExtResource("1_0xm2m")]
+offset_left = 402.0
+offset_top = 424.0
+offset_right = 402.0
+offset_bottom = 424.0
+character = ExtResource("3_7mycd")
+
+[node name="Monsters" type="Node" parent="Combatants"]
+unique_name_in_owner = true
+
+[node name="monster" parent="Combatants/Monsters" groups=["combatant", "monster"] instance=ExtResource("2_h2yge")]
+offset_left = 79.0
+offset_top = 46.0
+offset_right = 79.0
+offset_bottom = 46.0
+character = ExtResource("4_lquwl")
+ID = "Bat"
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("4_1bvp3")
+expand_mode = 1
+
+[node name="player_actions" type="Panel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 7.0
+offset_top = 495.0
+offset_right = 452.0
+offset_bottom = 644.0
+
+[node name="Button" type="Button" parent="player_actions"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 5.0
+offset_right = 148.0
+offset_bottom = 71.0
+focus_neighbor_left = NodePath("../Button4")
+focus_neighbor_top = NodePath("../Button3")
+focus_neighbor_right = NodePath("../Button2")
+focus_neighbor_bottom = NodePath("../Button3")
+text = "ataque 1"
+
+[node name="Button2" type="Button" parent="player_actions"]
+layout_mode = 0
+offset_left = 294.0
+offset_top = 6.0
+offset_right = 429.0
+offset_bottom = 72.0
+focus_neighbor_left = NodePath("../Button")
+focus_neighbor_top = NodePath("../Button4")
+focus_neighbor_right = NodePath("../Button3")
+focus_neighbor_bottom = NodePath("../Button4")
+text = "defesa"
+
+[node name="Button3" type="Button" parent="player_actions"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 79.0
+offset_right = 147.0
+offset_bottom = 145.0
+focus_neighbor_left = NodePath("../Button2")
+focus_neighbor_top = NodePath("../Button")
+focus_neighbor_right = NodePath("../Button4")
+focus_neighbor_bottom = NodePath("../Button")
+text = "ataque 2"
+
+[node name="Button4" type="Button" parent="player_actions"]
+layout_mode = 0
+offset_left = 293.0
+offset_top = 78.0
+offset_right = 428.0
+offset_bottom = 144.0
+focus_neighbor_left = NodePath("../Button3")
+focus_neighbor_top = NodePath("../Button2")
+focus_neighbor_right = NodePath("../Button")
+focus_neighbor_bottom = NodePath("../Button2")
+text = "itens"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 287.0
+offset_right = 449.0
+offset_bottom = 492.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7mycd")
+}
+
+[node name="CombatLog" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 624.0
+offset_top = 14.0
+offset_right = 1132.0
+offset_bottom = 190.0
+
+[node name="CombatText" type="RichTextLabel" parent="CombatLog"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="timeout" from="turn_updater" to="." method="_on_update_turns_timeout"]

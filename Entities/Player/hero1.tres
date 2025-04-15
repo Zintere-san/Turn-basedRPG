@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Player" load_steps=3 format=3 uid="uid://djj3gkxyeg7y6"]
+
+[ext_resource type="Script" uid="uid://dfy2sa8b7ngvy" path="res://Data/Scripts/attack_class.gd" id="1_slreg"]
+[ext_resource type="Script" uid="uid://cmh0bd2181a5j" path="res://Data/Scripts/player_class.gd" id="2_n70y8"]
+
+[resource]
+script = ExtResource("2_n70y8")
+moves = Dictionary[ExtResource("1_slreg"), int]({})
+vitality = null
+strength = null
+dexterity = null
+magic = null
+luck = null
+ID = ""
+hp = 1
+mp = 1
+patk = 1
+matk = 1
+pdef = 1
+mdef = 1
+agility = 1
+max_act = 1
+neutral = 0.0
+fire = 0.0
+ice = 0.0
+thunder = 0.0
+earth = 0.0
+light = 0.0
+dark = 0.0
+metadata/_custom_type_script = "uid://cmh0bd2181a5j"

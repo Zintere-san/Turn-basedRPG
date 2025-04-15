@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjno8wwc8ga3x"]
+
+[ext_resource type="Script" uid="uid://baejacvfj80fx" path="res://CombatUI/move_button.gd" id="1_qfyon"]
+[ext_resource type="Resource" uid="uid://cc27oioxo4mvg" path="res://Data/Attacks/Resources/slash.tres" id="2_677er"]
+
+[node name="Button" type="Button"]
+offset_right = 40.0
+offset_bottom = 17.0
+script = ExtResource("1_qfyon")
+move = ExtResource("2_677er")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

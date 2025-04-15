@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Monster" load_steps=5 format=3 uid="uid://bytjcsx41j7hm"]
+
+[ext_resource type="Script" uid="uid://dfy2sa8b7ngvy" path="res://Data/Scripts/attack_class.gd" id="1_1xf1i"]
+[ext_resource type="Resource" uid="uid://bm23kjd3l1evn" path="res://Data/Attacks/Resources/headbutt.tres" id="2_1xf1i"]
+[ext_resource type="Resource" uid="uid://cc27oioxo4mvg" path="res://Data/Attacks/Resources/slash.tres" id="3_y4pey"]
+[ext_resource type="Script" uid="uid://clly48i3cb3h1" path="res://Data/Scripts/monster_class.gd" id="4_1xf1i"]
+
+[resource]
+script = ExtResource("4_1xf1i")
+EXP = 1
+Gold = 1
+moves = Dictionary[ExtResource("1_1xf1i"), int]({
+ExtResource("2_1xf1i"): 10,
+ExtResource("3_y4pey"): 15
+})
+ID = "Bat"
+hp = 1
+patk = 1
+matk = 1
+pdef = 1
+mdef = 1
+neutral = 0.0
+fire = 0.0
+ice = 0.0
+thunder = 0.0
+earth = 0.0
+light = 0.0
+dark = 0.0
+metadata/_custom_type_script = "uid://clly48i3cb3h1"

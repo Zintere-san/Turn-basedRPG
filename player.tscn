@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://drlrv6lbxea7t"]
+
+[ext_resource type="Script" uid="uid://bcgu1wa87opm" path="res://Entities/Player/Hero.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bltwn4rw5rfjr" path="res://cloudsprite.png" id="2_onrkg"]
+
+[node name="player" type="Control" groups=["combatant", "player"]]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_onrkg")
+
+[node name="Cloudsprite" type="Sprite2D" parent="."]
+position = Vector2(173, 122)
+scale = Vector2(4.3125, 4.3125)
+texture = ExtResource("2_onrkg")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 1.0
+offset_right = 421.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 38
+text = "
+"
