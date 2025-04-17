@@ -4,8 +4,11 @@ class_name Attack
 ## Unique name of this Attack.
 @export var ID   : String
 
-## Animation preset this will use when called in combat
+## Animation preset this will use when called in combat.
 @export var animation : String = ""
+
+## Cost to cast. Only applied player characters.
+@export var mana_cost : int = 0
 
 ## How the targeting works
 @export_enum("focused", "all", "random") var target_type := "focused"
@@ -13,7 +16,7 @@ class_name Attack
 ## How the " target_type = "target" " works. [br]
 ## Single : Hits one creature; [br]
 ## Three  : Hits two creatures besides original target  if possible; [br]
-## Focus  : Hits all creatures but deals higher damage to original target.
+## Focus  : Hits all creatures but deals higher damage (2x) to original target.
 @export_enum("single", "three", "focus") var target_spread := "single"
 
 ## How many times this move hits. If "target_type" is set to "random", it will pick a new random target each time.

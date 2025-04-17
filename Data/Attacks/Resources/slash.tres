@@ -5,7 +5,9 @@
 [resource]
 script = ExtResource("1_m7oix")
 ID = "Slash"
-target_type = "target"
+animation = ""
+mana_cost = 0
+target_type = "all"
 target_spread = "SINGLE"
 number_of_hits = 1
 damage_type = "p"

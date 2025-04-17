@@ -5,8 +5,13 @@
 [resource]
 script = ExtResource("1_pmwf8")
 ID = "Headbutt"
-target_type = "SINGLE"
+animation = ""
+mana_cost = 0
+target_type = "focused"
 target_spread = "SINGLE"
+number_of_hits = 1
 damage_type = "PHYS"
+element = "neutral"
 damage_multiplier = 1.2
+damage_penetration = 0.0
 metadata/_custom_type_script = "uid://dfy2sa8b7ngvy"

@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://baejacvfj80fx" path="res://CombatUI/move_button.gd" id="1_qfyon"]
 [ext_resource type="Resource" uid="uid://cc27oioxo4mvg" path="res://Data/Attacks/Resources/slash.tres" id="2_677er"]
 
-[node name="Button" type="Button"]
+[node name="move_button" type="Button"]
+custom_minimum_size = Vector2(200, 60)
 offset_right = 40.0
 offset_bottom = 17.0
+text = "asd"
 script = ExtResource("1_qfyon")
 move = ExtResource("2_677er")
 

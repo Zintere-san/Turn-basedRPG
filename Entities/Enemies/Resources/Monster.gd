@@ -1,18 +1,10 @@
 extends BaseCharacter
 
-var cur_hp
-var cur_mp
-var max_hp
-var max_mp
 
-func _ready() -> void:
-	
-	max_hp = character.hp
-	max_mp = character.mp
-	
-	print("I will take ", calculate_damage(20, "p", "neutral", 0), " damage")
-	#print(get_attack(character.moves).ID) this gets a random atk
-	pass
+#func _ready() -> void:
+	#print("I will take ", calculate_damage(20, "p", "neutral", 0), " damage")
+	##print(get_attack(character.moves).ID) this gets a random atk
+	#pass
 	
 func get_attack(weights : Dictionary) -> Attack:
 	var total_weight  = 0

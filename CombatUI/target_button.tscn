@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcbmxbopewsxn"]
+
+[ext_resource type="Script" uid="uid://ct4xf72ncnlh4" path="res://CombatUI/target_button.gd" id="1_n5y5n"]
+
+[node name="target_button" type="Button"]
+custom_minimum_size = Vector2(200, 60)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_n5y5n")

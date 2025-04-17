@@ -7,12 +7,12 @@
 
 [resource]
 script = ExtResource("4_1xf1i")
-EXP = 1
-Gold = 1
 moves = Dictionary[ExtResource("1_1xf1i"), int]({
 ExtResource("2_1xf1i"): 10,
 ExtResource("3_y4pey"): 15
 })
+EXP = 1
+Gold = 1
 ID = "Bat"
 hp = 1
 mp = 1
@@ -20,8 +20,8 @@ patk = 1
 matk = 1
 pdef = 1
 mdef = 1
-agility = 1
-max_act = 1
+agility = 2
+max_act = 100
 neutral = 0.0
 fire = 0.0
 ice = 0.0
