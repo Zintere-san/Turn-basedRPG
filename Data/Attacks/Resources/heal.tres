@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://brqbaiybvnxxn"]
+
+[ext_resource type="Script" uid="uid://dfy2sa8b7ngvy" path="res://Data/Scripts/attack_class.gd" id="1_r0hs7"]
+
+[resource]
+script = ExtResource("1_r0hs7")
+ID = "Heal"
+animation = " "
+resources = "mana"
+resource_cost = 20
+move_type = "sup"
+target_type = "focused"
+target_spread = "single"
+number_of_hits = 1
+damage_type = "p"
+element = "neutral"
+damage_multiplier = 0.0
+damage_penetration = 0.0
+metadata/_custom_type_script = "uid://dfy2sa8b7ngvy"

@@ -1,0 +1,86 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbsufg718h5gg"]
+
+[sub_resource type="GDScript" id="GDScript_qy753"]
+script/source = "extends Node2D
+
+var dummy_track : int = 1
+
+func _ready() -> void:
+	animate()
+
+func animate():
+	var anim = $AnimationPlayer.get_animation(\"anim_test\")
+	for i in range(anim.track_get_key_count(dummy_track)):
+		var time = anim.track_get_key_time(dummy_track, i)
+		anim.track_insert_key(0, time, {\"method\" : \"test\", \"args\" : [i, i]})
+	$AnimationPlayer.play(\"anim_test\")
+
+func test(value1: int, value2: int):
+	print(value1, value2)
+
+func dummy():
+	pass
+"
+
+[sub_resource type="Animation" id="Animation_jn05u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:process_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yyxt2"]
+resource_name = "anim_test"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"dummy"
+}, {
+"args": [],
+"method": &"dummy"
+}, {
+"args": [],
+"method": &"dummy"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o2wj0"]
+_data = {
+&"RESET": SubResource("Animation_jn05u"),
+&"anim_test": SubResource("Animation_yyxt2")
+}
+
+[node name="Node2D" type="Node2D"]
+script = SubResource("GDScript_qy753")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_o2wj0")
+}

@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://citwu45n5rnpk"]
+[gd_scene load_steps=13 format=3 uid="uid://citwu45n5rnpk"]
 
 [ext_resource type="PackedScene" uid="uid://drlrv6lbxea7t" path="res://player.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://unupul230njk" path="res://Data/Scripts/combat_manager.gd" id="1_1bvp3"]
+[ext_resource type="Resource" uid="uid://bm23kjd3l1evn" path="res://Data/Attacks/Resources/headbutt.tres" id="2_272bh"]
 [ext_resource type="PackedScene" uid="uid://dhfplumfoom0v" path="res://monster.tscn" id="2_h2yge"]
 [ext_resource type="Resource" uid="uid://djj3gkxyeg7y6" path="res://Entities/Player/hero1.tres" id="3_7mycd"]
 [ext_resource type="Texture2D" uid="uid://cpjm3itrrkjwa" path="res://bg.png" id="4_1bvp3"]
@@ -37,6 +38,34 @@ tracks/0/keys = {
 "values": [0.0, 0.118682, 0.0]
 }
 
+[sub_resource type="Animation" id="Animation_272bh"]
+resource_name = "headbutt"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"dummy"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_7mycd"]
 resource_name = "key_tests"
 length = 5.0
@@ -62,15 +91,20 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_lquwl"),
 &"enemy_weak_screen_shake": SubResource("Animation_1bvp3"),
+&"headbutt": SubResource("Animation_272bh"),
 &"key_tests": SubResource("Animation_7mycd")
 }
 
-[node name="Battle" type="Control"]
+[node name="Battle" type="Control" node_paths=PackedStringArray("target_selected", "current_actor")]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_1bvp3")
+attack_selected = ExtResource("2_272bh")
+target_selected = NodePath("Combatants/Monsters/monster")
+current_actor = NodePath("Combatants/Players/player1")
 
 [node name="turn_updater" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
 [node name="combat_animator" type="AnimationPlayer" parent="."]
@@ -83,33 +117,33 @@ unique_name_in_owner = true
 
 [node name="1" type="TextureButton" parent="Spots"]
 offset_left = 246.0
-offset_top = 93.0
+offset_top = 162.0
 offset_right = 246.0
-offset_bottom = 93.0
+offset_bottom = 162.0
 
 [node name="2" type="TextureButton" parent="Spots"]
 offset_left = 431.0
-offset_top = 73.0
+offset_top = 142.0
 offset_right = 431.0
-offset_bottom = 73.0
+offset_bottom = 142.0
 
 [node name="3" type="TextureButton" parent="Spots"]
 offset_left = 610.0
-offset_top = 68.0
+offset_top = 137.0
 offset_right = 610.0
-offset_bottom = 68.0
+offset_bottom = 137.0
 
 [node name="4" type="TextureButton" parent="Spots"]
 offset_left = 789.0
-offset_top = 69.0
+offset_top = 138.0
 offset_right = 789.0
-offset_bottom = 69.0
+offset_bottom = 138.0
 
 [node name="5" type="TextureButton" parent="Spots"]
 offset_left = 967.0
-offset_top = 82.0
+offset_top = 151.0
 offset_right = 967.0
-offset_bottom = 82.0
+offset_bottom = 151.0
 
 [node name="Combatants" type="Node" parent="."]
 
@@ -117,10 +151,6 @@ offset_bottom = 82.0
 unique_name_in_owner = true
 
 [node name="player1" parent="Combatants/Players" instance=ExtResource("1_0xm2m")]
-offset_left = 402.0
-offset_top = 424.0
-offset_right = 402.0
-offset_bottom = 424.0
 character = ExtResource("3_7mycd")
 
 [node name="Monsters" type="Node" parent="Combatants"]
@@ -131,6 +161,7 @@ offset_left = 79.0
 offset_top = 46.0
 offset_right = 79.0
 offset_bottom = 46.0
+current_position = 1
 character = ExtResource("4_lquwl")
 ID = "Bat"
 
@@ -140,95 +171,6 @@ offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("4_1bvp3")
 expand_mode = 1
-
-[node name="player_action_c" type="Panel" parent="."]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 7.0
-offset_top = 495.0
-offset_right = 452.0
-offset_bottom = 644.0
-
-[node name="MarginContainer" type="MarginContainer" parent="player_action_c"]
-layout_mode = 2
-offset_right = 200.0
-offset_bottom = 60.0
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="player_actions" type="GridContainer" parent="player_action_c/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 10
-columns = 2
-
-[node name="target_select_c" type="Panel" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 7.0
-offset_top = 495.0
-offset_right = 452.0
-offset_bottom = 644.0
-
-[node name="MarginContainer" type="MarginContainer" parent="target_select_c"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="targets" type="GridContainer" parent="target_select_c/MarginContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 10
-
-[node name="action_confirm" type="Panel" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 388.0
-offset_top = 293.0
-offset_right = 786.0
-offset_bottom = 367.0
-
-[node name="Yes" type="Button" parent="action_confirm"]
-layout_mode = 0
-offset_left = 23.0
-offset_top = 6.0
-offset_right = 142.0
-offset_bottom = 68.0
-text = "Yes
-"
-
-[node name="No" type="Button" parent="action_confirm"]
-layout_mode = 0
-offset_left = 235.0
-offset_top = 6.0
-offset_right = 366.0
-offset_bottom = 65.0
-text = "No
-"
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 287.0
-offset_right = 449.0
-offset_bottom = 492.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-horizontal_alignment = 1
-vertical_alignment = 2
 
 [node name="CombatLog" type="Panel" parent="."]
 visible = false
@@ -250,5 +192,184 @@ offset_right = -8.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 287.0
+offset_right = 449.0
+offset_bottom = 492.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="player_UI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="player_actions" type="PanelContainer" parent="player_UI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 496.0
+offset_right = 452.0
+offset_bottom = 646.0
+
+[node name="player_action_select" type="Control" parent="player_UI/player_actions"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="player_UI/player_actions/player_action_select"]
+layout_mode = 2
+offset_right = 446.0
+offset_bottom = 154.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="player_attacks" type="GridContainer" parent="player_UI/player_actions/player_action_select/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="attack_button" type="Button" parent="player_UI/player_actions/player_action_select/MarginContainer/player_attacks"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "ATTACK"
+
+[node name="spell_button" type="Button" parent="player_UI/player_actions/player_action_select/MarginContainer/player_attacks"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "SPELLS"
+
+[node name="defend_button" type="Button" parent="player_UI/player_actions/player_action_select/MarginContainer/player_attacks"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "DEFEND"
+
+[node name="items_button" type="Button" parent="player_UI/player_actions/player_action_select/MarginContainer/player_attacks"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "ITEMS"
+
+[node name="player_attack_select" type="Control" parent="player_UI/player_actions"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="player_UI/player_actions/player_attack_select"]
+layout_mode = 2
+offset_right = 200.0
+offset_bottom = 60.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="player_attacks" type="GridContainer" parent="player_UI/player_actions/player_attack_select/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="player_items_select" type="Control" parent="player_UI/player_actions"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="player_UI/player_actions/player_items_select"]
+layout_mode = 2
+offset_right = 200.0
+offset_bottom = 60.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="player_items" type="GridContainer" parent="player_UI/player_actions/player_items_select/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="player_target_select" type="Control" parent="player_UI/player_actions"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="player_UI/player_actions/player_target_select"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="targets" type="GridContainer" parent="player_UI/player_actions/player_target_select/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 10
+
+[node name="action_confirm" type="Panel" parent="player_UI/player_actions"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="accept_action" type="Button" parent="player_UI/player_actions/action_confirm"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 17.0
+offset_top = 43.0
+offset_right = 206.0
+offset_bottom = 107.0
+text = "Yes
+"
+
+[node name="refuse_action" type="Button" parent="player_UI/player_actions/action_confirm"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 248.0
+offset_top = 43.0
+offset_right = 429.0
+offset_bottom = 110.0
+text = "No
+"
+
+[node name="return" type="Button" parent="player_UI"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+offset_left = 409.0
+offset_top = 458.0
+offset_right = 452.0
+offset_bottom = 495.0
+text = "<"
+
+[node name="player_stats" type="Control" parent="player_UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="player_UI/player_stats"]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 496.0
+offset_right = 1146.0
+offset_bottom = 646.0
 
 [connection signal="timeout" from="turn_updater" to="." method="_on_update_turns_timeout"]

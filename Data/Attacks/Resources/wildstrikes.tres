@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Attack" load_steps=2 format=3 uid="uid://vo0pa7736vcj"]
+
+[ext_resource type="Script" uid="uid://dfy2sa8b7ngvy" path="res://Data/Scripts/attack_class.gd" id="1_83oad"]
+
+[resource]
+script = ExtResource("1_83oad")
+ID = "Wild Strikes"
+animation = ""
+mana_cost = 0
+target_type = "focused"
+target_spread = "single"
+number_of_hits = 1
+damage_type = "p"
+element = "neutral"
+damage_multiplier = 0.0
+damage_penetration = 0.0
+metadata/_custom_type_script = "uid://dfy2sa8b7ngvy"

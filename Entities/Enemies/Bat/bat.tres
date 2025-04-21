@@ -11,6 +11,7 @@ moves = Dictionary[ExtResource("1_1xf1i"), int]({
 ExtResource("2_1xf1i"): 10,
 ExtResource("3_y4pey"): 15
 })
+monsterAI = "aggressive"
 EXP = 1
 Gold = 1
 ID = "Bat"

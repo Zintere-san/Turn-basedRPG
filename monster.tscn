@@ -1,16 +1,69 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhfplumfoom0v"]
+[gd_scene load_steps=10 format=3 uid="uid://dhfplumfoom0v"]
 
 [ext_resource type="Script" uid="uid://bx6b0rd5wb26a" path="res://Entities/Enemies/Resources/Monster.gd" id="1_mrqeg"]
+[ext_resource type="Shader" uid="uid://ullsxf0gsq24" path="res://Shaders/die_effect.gdshader" id="2_ga5te"]
 [ext_resource type="Texture2D" uid="uid://dvyj4ui7mf4p7" path="res://batsprite.png" id="2_mrqeg"]
+[ext_resource type="Texture2D" uid="uid://cmj27ku5q3v84" path="res://target-arrow.png" id="4_vr0w3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vr0w3"]
+shader = ExtResource("2_ga5te")
+shader_parameter/pixelate_amount = 0.0
+shader_parameter/explode_amount = 0.0
+shader_parameter/dodge_amount = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tndq"]
+atlas = ExtResource("4_vr0w3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ngjm"]
+atlas = ExtResource("4_vr0w3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhkt7"]
+atlas = ExtResource("4_vr0w3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3r7jw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tndq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ngjm")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhkt7")
+}],
+"loop": true,
+"name": &"still",
+"speed": 5.0
+}]
 
 [node name="monster" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_mrqeg")
 
-[node name="Batsprite" type="Sprite2D" parent="."]
-scale = Vector2(-2.867, 2.867)
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_vr0w3")
+scale = Vector2(-3, 3)
 texture = ExtResource("2_mrqeg")
+
+[node name="Effect" type="Sprite2D" parent="."]
+
+[node name="Select" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(2, -96)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_3r7jw")
+animation = &"still"
+frame_progress = 0.360104
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

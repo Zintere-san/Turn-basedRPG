@@ -4,3 +4,6 @@ extends Button
 
 func _ready() -> void:
 	text = target.character.ID
+
+func _on_pressed() -> void:
+	pass # Replace with function body.

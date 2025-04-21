@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Player" load_steps=5 format=3 uid="uid://djj3gkxyeg7y6"]
+[gd_resource type="Resource" script_class="Player" load_steps=6 format=3 uid="uid://djj3gkxyeg7y6"]
 
 [ext_resource type="Script" uid="uid://dfy2sa8b7ngvy" path="res://Data/Scripts/attack_class.gd" id="1_slreg"]
 [ext_resource type="Resource" uid="uid://bm23kjd3l1evn" path="res://Data/Attacks/Resources/headbutt.tres" id="2_b0muu"]
 [ext_resource type="Script" uid="uid://cmh0bd2181a5j" path="res://Data/Scripts/player_class.gd" id="2_n70y8"]
 [ext_resource type="Resource" uid="uid://cc27oioxo4mvg" path="res://Data/Attacks/Resources/slash.tres" id="3_tfd1o"]
+[ext_resource type="Resource" uid="uid://brqbaiybvnxxn" path="res://Data/Attacks/Resources/heal.tres" id="5_tfd1o"]
 
 [resource]
 script = ExtResource("2_n70y8")
 moves = Array[ExtResource("1_slreg")]([ExtResource("2_b0muu"), ExtResource("3_tfd1o")])
+spells = Array[ExtResource("1_slreg")]([ExtResource("5_tfd1o")])
 vitality = null
 strength = null
 dexterity = null

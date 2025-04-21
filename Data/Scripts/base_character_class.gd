@@ -19,21 +19,27 @@ func _ready() -> void:
 	max_act = character.max_act
 	max_hp = character.hp
 	max_mp = character.mp
+	setup()
+
+func setup():
+	pass
 
 func update_turn_bar():
 	turn_bar += agility
 	if turn_bar >= max_act:
-		return true  
+		return true
 	else:
 		return false
 
-func take_damage():
+func take_damage(dmg : int):
 	pass
 
 func calculate_damage(dmg: int, type: String, element: String, pen: float):
 	pen = clamp(pen, 0, 1)
-	return ceili((dmg * dmg) / (dmg + (character.get(type + "def") * 1 - pen)) * 1 - character.get(element))
-
+	var dmg_to_take = ceili((dmg * dmg) / (dmg + (character.get(type + "def") * 1 - pen)) * 1 - character.get(element))
+	print(dmg_to_take)
+	return dmg_to_take
+	
 func take_turn():
 	pass
 

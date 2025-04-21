@@ -5,10 +5,15 @@ class_name Attack
 @export var ID   : String
 
 ## Animation preset this will use when called in combat.
-@export var animation : String = ""
+@export var animation : String = " "
+
+@export_enum("action", "mana") var resources : = "action"
 
 ## Cost to cast. Only applied player characters.
-@export var mana_cost : int = 0
+@export var resource_cost : int = 0
+
+## Either supportive or offensive move.
+@export_enum("atk", "sup") var move_type := "atk"
 
 ## How the targeting works
 @export_enum("focused", "all", "random") var target_type := "focused"

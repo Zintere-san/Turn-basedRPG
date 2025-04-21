@@ -1,7 +1,8 @@
 extends Entity
 class_name Player
 
-@export var moves : Array[Attack]
+@export var moves  : Array[Attack]
+@export var spells : Array[Attack]
 
 @export_group("Level up stats")
 @export_range(1, 99, 1) var vitality
